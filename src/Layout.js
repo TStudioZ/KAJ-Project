@@ -11,11 +11,13 @@ class Layout extends Component {
             <div className="page">
                 <Header />
                 <section>
-                    <Switch>
-                        <Route exact path='/' component={MainContent} />
-                        <Route exact path='/user' component={UserArea} />
-                        <Route component={NoMatch} />
-                    </Switch>
+                    <main>
+                        <Switch>
+                            <Route exact path='/' component={MainContent} />
+                            <Route exact path='/user' component={UserArea} />
+                            <Route component={NoMatch} />
+                        </Switch>
+                    </main>
                 </section>
                 <Footer />
             </div>

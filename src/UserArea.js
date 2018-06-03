@@ -4,10 +4,10 @@ import UserProfile from './UserProfile';
 class UserArea extends Component {
     render() {
         return (
-            <main>
+            <div className="user-area">
                 This is the User Area.
                 <UserProfile />
-            </main>
+            </div>
         );
     }
 }
