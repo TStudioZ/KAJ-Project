@@ -8,6 +8,7 @@ class MainMenu extends Component {
                 <div className="navigation">
                     <NavLink className="link" activeClassName="link-active" to="/" exact>Home</NavLink>
                     <NavLink className="link" activeClassName="link-active" to="/user" exact>My profile</NavLink>
+                    <NavLink className="link" activeClassName="link-active" to="/activities" exact>Activities</NavLink>
                 </div>
             </nav>
         );

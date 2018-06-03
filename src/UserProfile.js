@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SportsTrackerAPI from './SportsTrackerAPI';
 import { MessageLoading } from './Messages';
+import EditableField from './components/EditableField';
 
 class UserProfile extends Component {
 
@@ -28,9 +29,9 @@ class UserProfile extends Component {
         });
     }
 
-    handleUsernameChange(event) {
-        console.log(event.target.value);
-        this.setState({...this.state, username: event.target.value});
+    handleUsernameChange(username) {
+        console.log(username);
+        this.setState({...this.state, username: username});
     }
 
     handleWeightChange(event) {
@@ -43,17 +44,15 @@ class UserProfile extends Component {
         const weight = this.state.weight;
 
         return (
-            <form onSubmit={this.handleSave}>
+            <div>
                 <div className="form-header">Your profile</div>
                 <ul className="form-wrapper">
-                    <li className="form-group">
-                        <label htmlFor="username">Username:</label>
-                        <div className="form-input-edit">
-                            <input type="text" className="form-control" name="username" 
-                                value={username} onChange={this.handleUsernameChange} />
-                            <button type="submit" className="btn-small">Edit</button>
-                        </div>
-                    </li>
+                    <EditableField
+                        name="username"
+                        type="text"
+                        val={username}
+                        onValueChange={this.handleUsernameChange}
+                        label="Username:" />
                     <li className="form-group">
                         <label htmlFor="weight">Weight:</label>
                         <div className="form-input-edit">
@@ -63,16 +62,15 @@ class UserProfile extends Component {
                         </div>
                     </li>
                     <li className="form-group">
-                        <button type="submit" className="btn">Save</button>
+                        <button onClick={this.handleSave} className="btn">Save</button>
                     </li>
                 </ul>
-            </form>
+            </div>
         );
     }
 
     render() {
-
-        let contents = this.state.loading ? MessageLoading : this.renderUserProfile();
+        const contents = this.state.loading ? MessageLoading : this.renderUserProfile();
 
         return (
             <div className="user-profile">

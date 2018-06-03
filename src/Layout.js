@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import MainContent from './MainContent';
 import UserArea from './UserArea';
+import ActivitiesArea from './ActivitiesArea';
 
 class Layout extends Component {
     render() {
@@ -15,6 +16,7 @@ class Layout extends Component {
                         <Switch>
                             <Route exact path='/' component={MainContent} />
                             <Route exact path='/user' component={UserArea} />
+                            <Route exact path='/activities' component={ActivitiesArea} />
                             <Route component={NoMatch} />
                         </Switch>
                     </main>
@@ -26,9 +28,9 @@ class Layout extends Component {
 }
 
 const NoMatch = ({ location }) => (
-    <main>
+    <div>
         No match for <code>{location.pathname}</code>
-    </main>
+    </div>
   );
 
 export default Layout;

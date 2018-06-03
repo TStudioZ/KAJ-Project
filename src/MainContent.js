@@ -1,11 +1,35 @@
 import React, { Component } from 'react';
+import SportsTrackerAPI from './SportsTrackerAPI';
+import { MessageLoading } from './Messages';
 
 class MainContent extends Component {
-    render() {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {loading: true, user: null};
+        SportsTrackerAPI.loadUser().then(u => {
+            this.setState({loading: false, user: u});
+        });
+    }
+
+    renderContent() {
+        let username = this.state.user.username;
+
         return (
-            <p className="App-intro">
-                To get started, edit <code>src/App.js</code> and save to reload.
-            </p>
+            <div>
+                Hi, {username}
+            </div>
+        );
+    }
+
+    render() {
+        let contents = this.state.loading ? MessageLoading : this.renderContent();
+
+        return (
+            <div className="App-intro">
+                {contents}
+            </div>
         );
     }
 }
