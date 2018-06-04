@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import LabeledField from './components/LabeledField';
 import LabeledDropdown from './components/LabeledDropdown';
 import SportsTrackerAPI, { SportActivity } from './SportsTrackerAPI';

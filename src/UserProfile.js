@@ -20,7 +20,6 @@ class UserProfile extends Component {
 
     handleSave(event) {
         event.preventDefault();
-        console.log(this.state);
 
         this.setState({...this.state, loading: true});
         let user = {username: this.state.username, weight: this.state.weight};
@@ -30,13 +29,20 @@ class UserProfile extends Component {
     }
 
     handleUsernameChange(username) {
-        console.log(username);
         this.setState({...this.state, username: username});
     }
 
-    handleWeightChange(event) {
-        console.log(event.target.value);
-        this.setState({...this.state, weight: event.target.value});
+    handleWeightChange(weight) {
+        this.setState({...this.state, weight: weight});
+    }
+
+    renderHeader() {
+        const isEdit = this.state.id > 0;
+        return (
+            <div className="form-header">
+                Your profile
+            </div>
+        );
     }
 
     renderUserProfile() {
@@ -44,23 +50,20 @@ class UserProfile extends Component {
         const weight = this.state.weight;
 
         return (
-            <div>
-                <div className="form-header">Your profile</div>
-                <ul className="form-wrapper">
+            <div className="form-wrapper">
+                <ul className="form">
                     <EditableField
                         name="username"
                         type="text"
                         val={username}
                         onValueChange={this.handleUsernameChange}
                         label="Username:" />
-                    <li className="form-group">
-                        <label htmlFor="weight">Weight:</label>
-                        <div className="form-input-edit">
-                            <input type="number" min="0" step="0.1" className="form-control" name="weight" 
-                                value={weight} onChange={this.handleWeightChange} />
-                            <button type="submit" className="btn-small">Edit</button>
-                        </div>
-                    </li>
+                    <EditableField
+                        name="weight"
+                        type="number"
+                        val={weight}
+                        onValueChange={this.handleWeightChange}
+                        label="Weight:" />
                     <li className="form-group">
                         <button onClick={this.handleSave} className="btn">Save</button>
                     </li>
@@ -70,10 +73,12 @@ class UserProfile extends Component {
     }
 
     render() {
+        const header = this.renderHeader();
         const contents = this.state.loading ? MessageLoading : this.renderUserProfile();
 
         return (
-            <div className="user-profile">
+            <div className="user-profile-wrapper">
+                {header}
                 {contents}
             </div>
         );

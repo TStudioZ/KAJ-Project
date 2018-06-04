@@ -5,7 +5,6 @@ class UserArea extends Component {
     render() {
         return (
             <div className="user-area">
-                This is the User Area.
                 <UserProfile />
             </div>
         );

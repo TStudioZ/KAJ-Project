@@ -24,18 +24,24 @@ class EditableField extends Component {
 
         return (
             <li className="form-group">
-                <label htmlFor={this.props.name}>{this.props.label}</label>
-                {isEditing ? (
-                    <div className="form-input-edit">
-                        <input type={this.props.type} className="form-control" name={this.props.name} 
-                            value={val} onChange={this.handleValueChange} />
-                    </div>
-                ) : (
-                    <div className="form-input-edit">
-                        <label className="form-control-non-editable">{this.props.val}</label>
-                        <button onClick={this.handleEdit} className="btn-small">Edit</button>
-                    </div>
-                )}
+                <ul className="form-group-cols">
+                    <li>
+                        <label htmlFor={this.props.name}>{this.props.label}</label>
+                    </li>
+                    <li>
+                        {isEditing ? (
+                            <div className="form-input-edit">
+                                <input type={this.props.type} className="form-control" name={this.props.name} 
+                                    value={val} onChange={this.handleValueChange} />
+                            </div>
+                        ) : (
+                            <div className="form-input-edit">
+                                <label className="form-control-non-editable">{this.props.val}</label>
+                                <button onClick={this.handleEdit} className="btn-small">Edit</button>
+                            </div>
+                        )}
+                    </li>
+                </ul>
             </li>
         );
     }
