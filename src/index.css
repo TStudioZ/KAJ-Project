@@ -92,6 +92,13 @@ body {
 }
 
 .form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-flow: row wrap;
   list-style-type: none;
   padding: 0;
 }
@@ -100,21 +107,47 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin: 10px;
-  height: 40px;
+  width: 100%;
+  margin: 10px 0 0 0;
+}
+
+.form-group-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0 0 0;
+}
+
+.form-group-bottom > * {
+  margin: 0 0 0 5px;
 }
 
 .form-group > .form-input-edit {
   display: flex;
-}
-
-.form-group > label {
-  text-align: left;
-  flex-grow: 1;
-}
-
-.form-group > .form-input-edit {
   flex-grow: 2;
+}
+
+.form-group-cols > li > input {
+  width: 100%;
+}
+
+.form-group-cols {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.form-group-cols > li:first-child {
+  text-align: left;
+  flex: 1 0 0;
+}
+
+.form-group-cols > li:last-child {
+  flex: 3 0 0;
 }
 
 .form-control {
@@ -122,7 +155,6 @@ body {
   border: 2px solid rgb(196, 196, 196);
   border-radius: 10px;
   background-color: rgb(247, 247, 247);
-  width: 100%;
   box-sizing: border-box;
   outline: none;
   box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.2);
@@ -147,6 +179,7 @@ button {
   border-radius: 10px;
   color: white;
   outline: none;
+  cursor: pointer;
 }
 
 button:hover {
@@ -159,6 +192,10 @@ button:hover {
 
 .btn-small {
   padding: 10px 10px;
+}
+
+.btn-small-list {
+  padding: 5px 10px;
 }
 
 .link {
@@ -197,6 +234,8 @@ button:hover {
 .activity-list-wrapper > .activity-list {
   display: flex;
   flex-flow: row wrap;
+  list-style-type: none;
+  padding: 0;
 }
 
 .activity-list-wrapper > .activity-list > .activity-list-item, 
@@ -219,8 +258,9 @@ button:hover {
 .activity-list-wrapper > .activity-list > .activity-list-header > .activity-list-header-cols {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   list-style-type: none;
-  padding: 0;
+  padding: 5px;
   width: 100%;
 }
 
@@ -229,7 +269,8 @@ button:hover {
   flex: 1 1 0;
 }
 
-.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li:nth-child(3) {
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li:nth-child(3),
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li:nth-child(4) {
   display: flex;
   justify-content: flex-end;
 }
@@ -238,18 +279,26 @@ button:hover {
   background-color: rgb(248, 248, 248);
 }
 
-.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li > .activity-list-item-col-right::before {
-  content: "Before";
-  visibility: hidden;
-  flex-grow: 2;
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li > .activity-list-item-col-right {
+  display: flex;
+  justify-content: flex-end;
   width: 100%;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li > .activity-list-item-col-right::before {
+  content: "";
+  visibility: hidden;
+  flex: 1 0 0;
   background-color: chartreuse;
 }
 
 .activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li > .activity-list-item-col-right::after {
-  content: "After";
+  content: "";
   visibility: hidden;
-  flex-grow: 1;
-  width: 100%;
+  flex: 0 0 25%;
   background-color: chocolate;
+}
+
+.add-edit-activity-wrapper {
+  width: 50%;
 }

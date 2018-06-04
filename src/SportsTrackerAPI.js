@@ -3,7 +3,7 @@ class SportsTrackerAPI {
     static init() {
         SportsTrackerAPI.user = {username: "User", weight: 0.0};
 
-        SportsTrackerAPI.currentActivityId = 0; // generated id for activities
+        SportsTrackerAPI.currentActivityId = 1; // generated id for activities
         SportsTrackerAPI.activities = new Map(); // {id, activity} pairs
     }
 
@@ -30,7 +30,7 @@ class SportsTrackerAPI {
 
     static addActivity(activity) {
         activity.id = SportsTrackerAPI.currentActivityId++;
-        SportsTrackerAPI.activities.set(activity.id, activity);
+        SportsTrackerAPI.activities.set(activity.id.toString(), activity);
         return SportsTrackerAPI.createPromise(true);
     }
 
@@ -47,8 +47,8 @@ class SportsTrackerAPI {
     }
 
     static getActivity(activityId) {
-        const activity = SportsTrackerAPI.activities.get(activityId);
-        return SportsTrackerAPI.createPromise(activity);
+        const activity = SportsTrackerAPI.activities.get(activityId.toString());
+        return SportsTrackerAPI.createPromise(activity, 1000);
     }
 
     static getActivites() {
@@ -57,7 +57,7 @@ class SportsTrackerAPI {
     }
 }
 
-class SportActivity {
+export class SportActivity {
 
     // constructor() {
     //     this.id = -1;
@@ -77,11 +77,10 @@ class SportActivity {
 
     getTimeString() {
         const time = this.time;
-        console.log(time);
-        const hours = parseInt(time / 3600);
+        const hours = parseInt(time / 3600, 10);
         const hoursString = hours > 0 ? hours + ":" : "";
-        const minutes = parseInt((time - hours * 3600) / 60);
-        const seconds = parseInt(time - hours * 3600 - minutes * 60);
+        const minutes = parseInt((time - hours * 3600) / 60, 10);
+        const seconds = parseInt(time - hours * 3600 - minutes * 60, 10);
         return `${hoursString}${("0" + minutes).slice(-2)}:${("0" + seconds).slice(-2)}`;
     }
 }

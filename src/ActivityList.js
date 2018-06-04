@@ -11,7 +11,6 @@ class ActivityList extends Component {
 
         this.state = { loading: true, activities: [] };
         SportsTrackerAPI.getActivites().then(a => {
-            console.log(a);
             this.setState({loading: false, activities: a});
         })
     }
@@ -20,14 +19,14 @@ class ActivityList extends Component {
         const activities = this.state.activities;
 
         return (
-            <div className="activity-list">
+            <ul className="activity-list">
                 <ActivityListHeader />
                 {activities.map(a =>
                     <ActivityListItem 
                         key={a.id} 
                         activity={a} />
                 )}
-            </div>
+            </ul>
         );
     }
 

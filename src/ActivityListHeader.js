@@ -10,6 +10,7 @@ class ActivityListHeader extends Component {
                     <li>Date</li>
                     <li>Time</li>
                     <li>Distance</li>
+                    <li></li>
                 </ul>
             </li>
         );

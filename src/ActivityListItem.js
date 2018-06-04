@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
+import { Route, withRouter} from 'react-router-dom';
 
 class ActivityListItem extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.handleEdit = this.handleEdit.bind(this);
+    }
+
+    handleEdit(event) {
+        const a = this.props.activity;
+
+        this.props.history.push(`/activities/${a.id}`);
+    }
 
     render() {
         const a = this.props.activity;
@@ -20,10 +33,13 @@ class ActivityListItem extends Component {
                             {a.distance} km
                         </div>
                     </li>
+                    <li>
+                        <button onClick={this.handleEdit} className="btn-small-list">Edit</button>
+                    </li>
                 </ul>
             </li>
         );
     }
 }
 
-export default ActivityListItem;
+export default withRouter(ActivityListItem);

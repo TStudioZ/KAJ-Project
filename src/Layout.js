@@ -5,6 +5,7 @@ import Footer from './Footer';
 import MainContent from './MainContent';
 import UserArea from './UserArea';
 import ActivitiesArea from './ActivitiesArea';
+import AddEditActivity from './AddEditActivity';
 
 class Layout extends Component {
     render() {
@@ -17,6 +18,8 @@ class Layout extends Component {
                             <Route exact path='/' component={MainContent} />
                             <Route exact path='/user' component={UserArea} />
                             <Route exact path='/activities' component={ActivitiesArea} />
+                            <Route exact path='/activities/add' component={AddEditActivity} />
+                            <Route path='/activities/:id' component={AddEditActivity} />
                             <Route component={NoMatch} />
                         </Switch>
                     </main>
