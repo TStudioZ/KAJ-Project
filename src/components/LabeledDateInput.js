@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 
-// props: {name, type, val, onValueChange, validate, label}
-class LabeledField extends Component {
+// props: {name, max, val, onValueChange, validate, label}
+class LabeledDateInput extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { validationError: null };
         this.handleValueChange = this.handleValueChange.bind(this);
     }
 
     handleValueChange(event) {
-        const val = event.target.value;
-        this.props.onValueChange(val);
+        this.props.onValueChange(event.target.value);
     }
 
     renderField() {
@@ -29,8 +27,8 @@ class LabeledField extends Component {
                         <label htmlFor={this.props.name}>{this.props.label}</label>
                     </li>
                     <li>
-                        <input type={this.props.type} className={inputClassName} name={this.props.name} 
-                            value={val} onChange={this.handleValueChange} />
+                        <input type="date" className={inputClassName} name={this.props.name} 
+                            max={this.props.max} value={val} onChange={this.handleValueChange} />
                         {validationError != null &&    
                             <div className="form-control-error-text">
                                 {validationError}
@@ -47,4 +45,4 @@ class LabeledField extends Component {
     }
 }
 
-export default LabeledField;
+export default LabeledDateInput;

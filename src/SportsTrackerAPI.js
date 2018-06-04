@@ -5,6 +5,7 @@ class SportsTrackerAPI {
 
         SportsTrackerAPI.currentActivityId = 1; // generated id for activities
         SportsTrackerAPI.activities = new Map(); // {id, activity} pairs
+        SportsTrackerAPI.sportTypes = ["Running", "Cycling", "Inline"];
     }
 
     static insertMockData() {
@@ -54,6 +55,10 @@ class SportsTrackerAPI {
     static getActivites() {
         return SportsTrackerAPI.createPromise(
             Array.from(SportsTrackerAPI.activities.values()));
+    }
+
+    static getSportTypes() {
+        return SportsTrackerAPI.sportTypes;
     }
 }
 
