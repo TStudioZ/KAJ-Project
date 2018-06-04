@@ -2,7 +2,15 @@ class SportsTrackerAPI {
 
     static init() {
         SportsTrackerAPI.user = {username: "User", weight: 0.0};
-        SportsTrackerAPI.activities = [];
+
+        SportsTrackerAPI.currentActivityId = 0; // generated id for activities
+        SportsTrackerAPI.activities = new Map(); // {id, activity} pairs
+    }
+
+    static insertMockData() {
+        this.addActivity(new SportActivity(-1, "Running", new Date(2018, 3, 1), 727, 2.77));
+        this.addActivity(new SportActivity(-1, "Running", new Date(2018, 3, 6), 1561, 5.75));
+        this.addActivity(new SportActivity(-1, "Running", new Date(2018, 3, 7), 766, 2.78));
     }
 
     static createPromise(data, timeout = 250) {
@@ -21,37 +29,64 @@ class SportsTrackerAPI {
     }
 
     static addActivity(activity) {
-
+        activity.id = SportsTrackerAPI.currentActivityId++;
+        SportsTrackerAPI.activities.set(activity.id, activity);
+        return SportsTrackerAPI.createPromise(true);
     }
 
     static updateActivity(activity) {
-        
+        if (!SportsTrackerAPI.activities.has(activity.id))
+            return SportsTrackerAPI.createPromise(false);
+        SportsTrackerAPI.activities.set(activity.id, activity);
+        return SportsTrackerAPI.createPromise(true);
     }
 
     static deleteActivity(activityId) {
-
+        const res = SportsTrackerAPI.activities.delete(activityId);
+        return SportsTrackerAPI.createPromise(res);
     }
 
     static getActivity(activityId) {
-
+        const activity = SportsTrackerAPI.activities.get(activityId);
+        return SportsTrackerAPI.createPromise(activity);
     }
 
     static getActivites() {
-
+        return SportsTrackerAPI.createPromise(
+            Array.from(SportsTrackerAPI.activities.values()));
     }
 }
 
 class SportActivity {
 
-    constructor() {
-        this.sportType = null;
-        this.name = null;
-        this.date = null;
-        this.distance = 0.0;
-        this.time = 0;
+    // constructor() {
+    //     this.id = -1;
+    //     this.sportType = null;
+    //     this.date = null;
+    //     this.distance = 0.0;
+    //     this.time = 0;
+    // }
+
+    constructor(id, sportType, date, time, distance) {
+        this.id = id;
+        this.sportType = sportType;
+        this.date = date;
+        this.time = time;
+        this.distance = distance;
+    }
+
+    getTimeString() {
+        const time = this.time;
+        console.log(time);
+        const hours = parseInt(time / 3600);
+        const hoursString = hours > 0 ? hours + ":" : "";
+        const minutes = parseInt((time - hours * 3600) / 60);
+        const seconds = parseInt(time - hours * 3600 - minutes * 60);
+        return `${hoursString}${("0" + minutes).slice(-2)}:${("0" + seconds).slice(-2)}`;
     }
 }
 
 SportsTrackerAPI.init();
+SportsTrackerAPI.insertMockData();
 
 export default SportsTrackerAPI;

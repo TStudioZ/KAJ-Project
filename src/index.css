@@ -184,3 +184,72 @@ button:hover {
   margin: 15px;
   font-size: large;
 }
+
+.activities-area {
+  width: 100%;
+}
+
+.activity-list-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity-list-wrapper > .activity-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-item, 
+.activity-list-wrapper > .activity-list > .activity-list-header {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-header {
+  font-weight: bold;
+  background-color: bisque;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-header > .activity-list-header-cols > li:not(:last-child) {
+  border-right: 1px solid white;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols,
+.activity-list-wrapper > .activity-list > .activity-list-header > .activity-list-header-cols {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li,
+.activity-list-wrapper > .activity-list > .activity-list-header > .activity-list-header-cols > li {
+  flex: 1 1 0;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li:nth-child(3) {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-item:nth-child(2n+1) {
+  background-color: rgb(248, 248, 248);
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li > .activity-list-item-col-right::before {
+  content: "Before";
+  visibility: hidden;
+  flex-grow: 2;
+  width: 100%;
+  background-color: chartreuse;
+}
+
+.activity-list-wrapper > .activity-list > .activity-list-item > .activity-list-item-cols > li > .activity-list-item-col-right::after {
+  content: "After";
+  visibility: hidden;
+  flex-grow: 1;
+  width: 100%;
+  background-color: chocolate;
+}

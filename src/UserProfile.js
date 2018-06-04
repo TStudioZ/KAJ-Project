@@ -8,7 +8,7 @@ class UserProfile extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {loading: true, username: "", weight: 0.0};
+        this.state = { loading: true, username: "", weight: 0.0 };
         SportsTrackerAPI.loadUser().then(user => {
             this.setState({loading: false, username: user.username, weight: user.weight});
         });
