@@ -18,9 +18,6 @@ These Promises are then used in the React Components for retrieving the mock dat
 ### Canvas
 The [AnimatedRunner](src/AnimatedRunner.js) component uses a  `<canvas>` and JavaScript to draw an animated image consisting of several frames.
 
-### Media
-
-
 ### Forms, validation
 All input fields are being properly validated. If there is a validation error, a message below the field is displayed and the field is highlited. There are several components for different inputs that are used by child components of [ValidatingForm](src/components/ValidatingForm.js). [EditableField](src/components/EditableField.js) consists of an edit button next to a label that changes to an input only after clicking the edit button.
 
@@ -52,11 +49,11 @@ The app is implemented using the React library.
 ### History
 The user can navigate back and forth in history. The app uses `HashRouter` from the React library to accomplish this.
 
-### Media API
+### Media
 
 
 ### Offline
-
+For caching the app, a service worker is registered. To inform the user that they are using an offline version of the app, a message is displayed in the top-left corner of the page.
 
 ### Using SVG in JavaScript
 
