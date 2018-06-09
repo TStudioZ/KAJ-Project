@@ -1,6 +1,6 @@
 import React from 'react';
 import SportsTrackerAPI from './SportsTrackerAPI';
-import { MessageLoading, MessageSaving } from './Messages';
+import * as Message from './Messages';
 import EditableField from './components/EditableField';
 import ValidatingForm from './components/ValidatingForm';
 
@@ -188,9 +188,9 @@ class UserProfile extends ValidatingForm {
         const header = this.renderHeader();
         let contents;
         if (this.state.loading) {
-            contents = MessageLoading;
+            contents = Message.MessageLoading;
         } else if (this.state.saving) {
-            contents = MessageSaving;
+            contents = Message.MessageSaving;
         } else {
             contents = this.renderUserProfile();
         }
