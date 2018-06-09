@@ -1,27 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import FormField from './FormField';
 
-// props: {name, type, val, onValueChange, validate, label}
-class LabeledField extends Component {
-    constructor(props) {
-        super(props);
+class LabeledField extends FormField {
 
-        this.state = { validationError: null };
-        this.handleValueChange = this.handleValueChange.bind(this);
-    }
-
-    handleValueChange(event) {
-        const val = event.target.value;
-        this.props.onValueChange(val);
-    }
-
-    renderField() {
-        const val = this.props.val;
-        let inputClassName = "form-control";
-        const validationError = this.props.validate(val);
-        if (validationError != null) {
-            inputClassName = inputClassName + " form-control-error";
-        }
-
+    renderField(validationError, inputClassName) {
         return (
             <li className="form-group">
                 <ul className="form-group-cols">
@@ -30,7 +12,7 @@ class LabeledField extends Component {
                     </li>
                     <li>
                         <input type={this.props.type} className={inputClassName} name={this.props.name} 
-                            value={val} onChange={this.handleValueChange} />
+                            value={this.props.val} onChange={this.handleValueChange} />
                         {validationError != null &&    
                             <div className="form-control-error-text">
                                 {validationError}
@@ -40,10 +22,6 @@ class LabeledField extends Component {
                 </ul>
             </li>
         );
-    }
-
-    render() {
-        return this.renderField();
     }
 }
 

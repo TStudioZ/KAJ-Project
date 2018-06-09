@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import FormField from './FormField';
 
-// props: {name, type, val, onValueChange, label}
-class EditableField extends Component {
+// props: {onEdit}
+class EditableField extends FormField {
     constructor(props) {
         super(props);
 
         this.state = {editing: false};
-        this.handleValueChange = this.handleValueChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }
 
-    handleValueChange(event) {
-        this.props.onValueChange(event.target.value);
-    }
-
     handleEdit(event) {
+        this.props.onEdit();
         this.setState({...this.state, editing: true});
     }
 
-    renderField() {
-        const val = this.props.val;
+    renderField(validationError, inputClassName) {
         const isEditing = this.state.editing;
 
         return (
@@ -30,9 +26,14 @@ class EditableField extends Component {
                     </li>
                     <li>
                         {isEditing ? (
-                            <div className="form-input-edit">
-                                <input type={this.props.type} className="form-control" name={this.props.name} 
-                                    value={val} onChange={this.handleValueChange} />
+                            <div>
+                                <input type={this.props.type} className={inputClassName} name={this.props.name} 
+                                    value={this.props.val} onChange={this.handleValueChange} />
+                                {validationError != null &&    
+                                    <div className="form-control-error-text">
+                                        {validationError}
+                                    </div>
+                                }
                             </div>
                         ) : (
                             <div className="form-input-edit">
@@ -44,10 +45,6 @@ class EditableField extends Component {
                 </ul>
             </li>
         );
-    }
-
-    render() {
-        return this.renderField();
     }
 }
 

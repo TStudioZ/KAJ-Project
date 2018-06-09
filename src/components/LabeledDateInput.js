@@ -1,25 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import FormField from './FormField';
 
-// props: {name, max, val, onValueChange, validate, label}
-class LabeledDateInput extends Component {
-    constructor(props) {
-        super(props);
+class LabeledDateInput extends FormField {
 
-        this.handleValueChange = this.handleValueChange.bind(this);
-    }
-
-    handleValueChange(event) {
-        this.props.onValueChange(event.target.value);
-    }
-
-    renderField() {
-        const val = this.props.val;
-        let inputClassName = "form-control";
-        const validationError = this.props.validate(val);
-        if (validationError != null) {
-            inputClassName = inputClassName + " form-control-error";
-        }
-
+    renderField(validationError, inputClassName) {
         return (
             <li className="form-group">
                 <ul className="form-group-cols">
@@ -28,7 +12,7 @@ class LabeledDateInput extends Component {
                     </li>
                     <li>
                         <input type="date" className={inputClassName} name={this.props.name} 
-                            max={this.props.max} value={val} onChange={this.handleValueChange} />
+                            max={this.props.max} value={this.props.val} onChange={this.handleValueChange} />
                         {validationError != null &&    
                             <div className="form-control-error-text">
                                 {validationError}
@@ -38,10 +22,6 @@ class LabeledDateInput extends Component {
                 </ul>
             </li>
         );
-    }
-
-    render() {
-        return this.renderField();
     }
 }
 

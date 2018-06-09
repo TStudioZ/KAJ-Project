@@ -1,7 +1,7 @@
 class SportsTrackerAPI {
 
     static init() {
-        SportsTrackerAPI.user = {username: "User", weight: 0.0};
+        SportsTrackerAPI.user = {username: "User", weight: 50.0};
 
         SportsTrackerAPI.currentActivityId = 1; // generated id for activities
         SportsTrackerAPI.activities = new Map(); // {id, activity} pairs
