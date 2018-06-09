@@ -86,6 +86,12 @@ body {
   text-align: left;
 }
 
+.area-header {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .form-wrapper {
   display: flex;
   flex-direction: column;
@@ -204,6 +210,12 @@ button:hover {
 
 .btn {
   padding: 10px 25px;
+  transition: background-color 1s linear;
+}
+
+.btn-disabled {
+  padding: 10px 25px;
+  background-color: gainsboro;
 }
 
 .btn-small {
@@ -233,7 +245,7 @@ button:hover {
   border-bottom: 2px solid white;
 }
 
-.msg {
+div.msg {
   margin: 15px;
   font-size: large;
 }
@@ -338,5 +350,106 @@ button:hover {
 @media screen and (max-width: 700px) {
   .add-edit-activity-wrapper {
     width: 100%;
+  }
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.main-area-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.main-area {
+  font-size: 18px;
+  flex: 1 0 0;
+  padding: 3em 1em 1em 1em;
+}
+
+.main-area-username {
+  animation: usernameSlideIn 1s ease-in 1;
+}
+
+@keyframes usernameSlideIn {
+  from { 
+    transform: translate(0, -100%);
+    visibility: 0%;
+  }
+  to { 
+    transform: translate(0, 0);
+    visibility: 100%;
+  }
+}
+
+.main-area-stats-header {
+  margin-top: 1em;
+  visibility: hidden;
+  animation: statsHeaderSlideIn 3s ease-in 1s 1 forwards; 
+}
+
+@keyframes statsHeaderSlideIn {
+  from { 
+    visibility: visible;
+    transform: translate(0, 100%);
+  }
+  50% {
+    transform: translate(0, 0);
+  }
+  to { 
+    visibility: hidden;
+  }
+}
+
+.main-area-stats-content {
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 2em;
+}
+
+.main-area-stats-content > li {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.main-area-stats-content > li > ul {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  list-style-type: none;
+  padding: 10px;
+}
+
+.main-area-stats-content > li > ul > li:first-child {
+}
+
+.main-area-stats-content > li > ul > li:last-child {
+}
+
+.stats-time {
+  visibility: hidden;
+  animation: statSlideIn 2s ease-in 2s 1 forwards; 
+}
+
+.stats-distance {
+  visibility: hidden;
+  animation: statSlideIn 2s ease-in 4s 1 forwards; 
+}
+
+@keyframes statSlideIn {
+  from { 
+    visibility: visible;
+    transform: translate(0, 100%);
+  }
+  to { 
+    visibility: visible;
+    transform: translate(0, 0);
   }
 }

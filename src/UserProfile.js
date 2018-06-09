@@ -40,6 +40,14 @@ class UserProfile extends ValidatingForm {
         });
     }
 
+    handleSave(event) {
+        if (!this.state.editing) {
+            event.preventDefault();
+            return;
+        }
+        super.handleSave(event);
+    }
+
     validateFieldsImpl(errors) {
         const user = this.state.data;
         errors["username"] = this.validateUsername(user.username);
@@ -117,7 +125,7 @@ class UserProfile extends ValidatingForm {
     renderHeader() {
         return (
             <div className="form-header">
-                Your profile
+                My profile
             </div>
         );
     }
@@ -130,6 +138,8 @@ class UserProfile extends ValidatingForm {
         const height = user.height;
 
         const errors = this.state.errors;
+
+        let saveBtnClassName = this.state.editing ? "btn" : "btn-disabled";
 
         return (
             <div className="form-wrapper">
@@ -166,11 +176,9 @@ class UserProfile extends ValidatingForm {
                         error={errors["height"]}
                         onEdit={this.handleEditField}
                         label="Height (cm):" />
-                    {this.state.editing &&
                         <li className="form-group">
-                            <button onClick={this.handleSave.bind(this)} className="btn">Save</button>
+                            <button onClick={this.handleSave.bind(this)} className={saveBtnClassName}>Save</button>
                         </li>
-                    }
                 </ul>
             </div>
         );
