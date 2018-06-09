@@ -52,11 +52,11 @@ class AddEditActivity extends ValidatingForm {
     }
 
     handleTimeChange(time) {
-        this.updateField("time", time, this.validateTime, (t) => parseInt(t.toString().trim(), 10));
+        this.updateField("time", time, this.validateTime, (t) => t);
     }
 
     handleDistanceChange(distance) {
-        this.updateField("distance", distance, this.validateDistance, (d) => parseFloat(d.toString().trim()));
+        this.updateField("distance", distance, this.validateDistance, (d) => d);
     }
 
     handleCancel(event) {
@@ -95,11 +95,12 @@ class AddEditActivity extends ValidatingForm {
     }
 
     validateTime(time) {
-        if (time.toString() === "") {
-            return "Cannot be empty";
-        }
-        if (time <= 0) {
-            return "Time must be > 0";
+        const timeString = time.toString();
+        const reg = /^[0-9]+$/
+        if (timeString === "" || !timeString.match(reg)) {
+            return "Wrong time format";
+        } else if (time <= 0) {
+            return "Time must be more than 0";
         } else if (time > 604800) {
             return "Time must be less than 604800";
         }
@@ -107,11 +108,11 @@ class AddEditActivity extends ValidatingForm {
     }
 
     validateDistance(distance) {
+        console.log(`Distance: [${distance}]`);
         if (distance.toString() === "") {
-            return "Cannot be empty";
-        }
-        if (distance <= 0) {
-            return "Distance must be > 0";
+            return "Wrong distance format";
+        } else if (distance <= 0) {
+            return "Distance must be more than 0 km";
         } else if (distance > 99999) {
             return "Distance must be less than 100 000 km";
         }

@@ -38,10 +38,12 @@ class ValidatingForm extends Component {
         this.setState({...this.state, errors: errors, data: data});
     }
 
+    // saving implemented in child
     handleSaveImpl(event) {
         console.log("handleSaveImpl() method not implemented");
     }
 
+    // validating of all fields implemented in child
     validateFieldsImpl(event) {
         console.log("validateFieldsImpl() method not implemented");
     }
