@@ -1,9 +1,9 @@
 # KAJ-Project
 This is the final project for the Client applications in JavaScript course.
-It only implements the front-end part of the app, even though there is a mocking API.
+It only focuses on the front-end part of an app, even though there is a mocking API.
 
 ## Goal of the project
-The goal of this project is to create a sample activities tracking app.
+The goal of this project is to create a sample sport activities tracking app.
 There is a user profile with some basic biological data.
 The user has the ability to add/edit activities and display them in a list. Some basic stats are available as well.
 
@@ -16,6 +16,9 @@ These Promises are then used in the React Components for retrieving the mock dat
 
 ### Canvas
 The [AnimatedRunner](src/AnimatedRunner.js) component uses a  `<canvas>` and JavaScript to draw an animated image consisting of several frames.
+
+### Media
+
 
 ### Forms, validation
 All input fields are being properly validated. If there is a validation error, a message below the field is displayed and the field is highlited. There are several components for different inputs that are used by child components of [ValidatingForm](src/components/ValidatingForm.js). [EditableField](src/components/EditableField.js) consists of an edit button next to a label that changes to an input only after clicking the edit button.
@@ -33,7 +36,7 @@ There are CSS animations used on the Home section of the app, see [index.css](sr
 A transition for changing the color of a button is implemented as well.
 
 ### Media queries
-The [index.css](src/index.css) contains media queries that ensure the app is correctly displayed on narrow screens. The space around some content is removed when the app is being displayed on a screen with a certain max-width.
+The [index.css](src/index.css) contains media queries that ensure the app is correctly displayed on narrow screens. The space around some content is removed when the app is being displayed on a screen with a certain `max-width`. The app utilizes `Flexbox` for laying out elements on the page so it dynamically adapts to the screen size.
 
 ### OOP, inheritance
 React Components are used in the project.
