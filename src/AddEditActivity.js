@@ -52,11 +52,11 @@ class AddEditActivity extends ValidatingForm {
     }
 
     handleTimeChange(time) {
-        this.updateField("time", time, this.validateTime, (t) => t);
+        this.updateField("time", time, this.validateTime, (t) => parseInt(t, 10));
     }
 
     handleDistanceChange(distance) {
-        this.updateField("distance", distance, this.validateDistance, (d) => d);
+        this.updateField("distance", distance, this.validateDistance, (d) => parseFloat(d));
     }
 
     handleCancel(event) {
@@ -108,7 +108,6 @@ class AddEditActivity extends ValidatingForm {
     }
 
     validateDistance(distance) {
-        console.log(`Distance: [${distance}]`);
         if (distance.toString() === "") {
             return "Wrong distance format";
         } else if (distance <= 0) {

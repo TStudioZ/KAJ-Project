@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
 import SportsTrackerAPI from './SportsTrackerAPI';
 import { MessageLoading } from './Messages';
+import Helper from './Helper';
 
 class MainContent extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {loading: true, user: null};
-        SportsTrackerAPI.loadUser().then(u => {
-            this.setState({loading: false, user: u});
+        this.state = {loading: true, user: null, totalDistance: 0, totalTime: 0};
+        Promise.all([
+            SportsTrackerAPI.loadUser(),
+            SportsTrackerAPI.getTotalDistance(),
+            SportsTrackerAPI.getTotalTime()
+        ]).then(([user, distance, time]) => {
+            this.setState({loading: false, user: user, totalDistance: distance, totalTime: time});
         });
     }
 
     renderContent() {
-        let username = this.state.user.username;
+        const username = this.state.user.username;
+        const distance = this.state.totalDistance;
+        const time = Helper.toTimeString(this.state.totalTime);
 
         return (
             <div className="main-area">
@@ -32,7 +39,7 @@ class MainContent extends Component {
                                     Total tracked time:
                                 </li>
                                 <li className="main-area-stats-content-time-value">
-                                    999
+                                    {time}
                                 </li>
                             </ul>
                         </li>
@@ -42,7 +49,7 @@ class MainContent extends Component {
                                     Total tracked distance (km):
                                 </li>
                                 <li className="main-area-stats-content-distance-value">
-                                    999
+                                    {distance}
                                 </li>
                             </ul>
                         </li>

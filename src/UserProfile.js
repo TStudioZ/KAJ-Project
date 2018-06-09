@@ -61,7 +61,7 @@ class UserProfile extends ValidatingForm {
     }
 
     handleAgeChange(age) {
-        this.updateField("age", age, this.validateAge, (a) => a);
+        this.updateField("age", age, this.validateAge, (a) => parseInt(a, 10));
     }
 
     handleWeightChange(weight) {
@@ -69,7 +69,7 @@ class UserProfile extends ValidatingForm {
     }
 
     handleHeightChange(height) {
-        this.updateField("height", height, this.validateHeight, (h) => h);
+        this.updateField("height", height, this.validateHeight, (h) => parseInt(h, 10));
     }
 
     validateUsername(username) {

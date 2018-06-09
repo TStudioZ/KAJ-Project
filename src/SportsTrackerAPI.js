@@ -1,3 +1,5 @@
+import Helper from './Helper';
+
 class SportsTrackerAPI {
 
     static init() {
@@ -60,17 +62,28 @@ class SportsTrackerAPI {
     static getSportTypes() {
         return SportsTrackerAPI.sportTypes;
     }
+
+    static getTotalDistance() {
+        const activities = SportsTrackerAPI.activities.values();
+        let distance = 0;
+        for (let a of activities) {
+            distance += a.distance;
+        }
+        distance = Math.round(distance * 100) / 100;
+        return SportsTrackerAPI.createPromise(distance, 500);
+    }
+
+    static getTotalTime() {
+        const activities = SportsTrackerAPI.activities.values();
+        let time = 0;
+        for (let a of activities) {
+            time += a.time;
+        }
+        return SportsTrackerAPI.createPromise(time, 500);
+    }
 }
 
 export class SportActivity {
-
-    // constructor() {
-    //     this.id = -1;
-    //     this.sportType = null;
-    //     this.date = null;
-    //     this.distance = 0.0;
-    //     this.time = 0;
-    // }
 
     constructor(id, sportType, date, time, distance) {
         this.id = id;
@@ -81,12 +94,7 @@ export class SportActivity {
     }
 
     getTimeString() {
-        const time = this.time;
-        const hours = parseInt(time / 3600, 10);
-        const hoursString = hours > 0 ? hours + ":" : "";
-        const minutes = parseInt((time - hours * 3600) / 60, 10);
-        const seconds = parseInt(time - hours * 3600 - minutes * 60, 10);
-        return `${hoursString}${("0" + minutes).slice(-2)}:${("0" + seconds).slice(-2)}`;
+        return Helper.toTimeString(this.time);
     }
 }
 
