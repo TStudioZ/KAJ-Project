@@ -2,8 +2,12 @@ import Helper from './Helper';
 
 class SportsTrackerAPI {
 
+    // insert mock data
     static init() {
-        SportsTrackerAPI.user = {username: "User", age: 18, weight: 50.0, height: 160};
+        if (!localStorage.getItem("user")) {
+            // insert basic user data if no found in local storage
+            localStorage.setItem("user", JSON.stringify({username: "User", age: 18, weight: 50.0, height: 160}));
+        }
 
         SportsTrackerAPI.currentActivityId = 1; // generated id for activities
         SportsTrackerAPI.activities = new Map(); // {id, activity} pairs
@@ -22,13 +26,16 @@ class SportsTrackerAPI {
         });
     }
 
+    // API methods return Promise and simulate a delay
+
     static updateUser(user) {
-        SportsTrackerAPI.user = user;
+        localStorage.setItem("user", JSON.stringify(user));
         return SportsTrackerAPI.createPromise(true);
     }
 
     static loadUser() {
-        return SportsTrackerAPI.createPromise(SportsTrackerAPI.user);
+        const user = JSON.parse(localStorage.getItem("user"));
+        return SportsTrackerAPI.createPromise(user);
     }
 
     static addActivity(activity) {
@@ -83,6 +90,9 @@ class SportsTrackerAPI {
     }
 }
 
+/**
+ * Represents the sport activity object and holds all activity data.
+ */
 export class SportActivity {
 
     constructor(id, sportType, date, time, distance) {

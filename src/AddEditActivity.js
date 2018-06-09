@@ -3,10 +3,11 @@ import { withRouter } from 'react-router-dom';
 import LabeledField from './components/LabeledField';
 import LabeledDropdown from './components/LabeledDropdown';
 import SportsTrackerAPI, { SportActivity } from './SportsTrackerAPI';
-import { MessageLoading, MessageSaving, MessageActivityNotFound } from './Messages';
+import * as Messages from './Messages';
 import LabeledDateInput from './components/LabeledDateInput';
 import Helper from './Helper';
 import ValidatingForm from './components/ValidatingForm';
+import successSound from './sounds/bicycle-horn-1.wav';
 
 class AddEditActivity extends ValidatingForm {
 
@@ -73,14 +74,20 @@ class AddEditActivity extends ValidatingForm {
         errors["distance"] = this.validateDistance(this.state.data.distance, true);
     }
 
+    playSuccessSound() {
+        new Audio(successSound).play();
+    }
+
     handleSaveImpl(errors) {
         this.setState({...this.state, errors: errors, saving: true});
         if (this.state.id > 0) {
             SportsTrackerAPI.updateActivity(this.state.data).then(res => {
+                this.playSuccessSound();
                 this.props.history.push(`/activities`);
             });
         } else {
             SportsTrackerAPI.addActivity(this.state.data).then(res => {
+                this.playSuccessSound();
                 this.props.history.push(`/activities`);
             });
         }
@@ -183,11 +190,11 @@ class AddEditActivity extends ValidatingForm {
         const header = this.renderHeader();
         let contents;
         if (this.state.loading) {
-            contents = MessageLoading;
+            contents = Messages.MessageLoading;
         } else if (!this.state.data) {
-            contents = MessageActivityNotFound;
+            contents = Messages.MessageActivityNotFound;
         } else if (this.state.saving) {
-            contents = MessageSaving;
+            contents = Messages.MessageSaving;
         } else {
             contents = this.renderActivity();
         }

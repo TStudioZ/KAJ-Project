@@ -44,17 +44,16 @@ React Components are used in the project.
 The app is implemented using the React library.
 
 ### Advanced JavaScript APIs
-
+[SportsTrackerAPI](src/SportsTrackerAPI.js) uses the Local Storage API to persist all user data. The user data object is stored in JSON representation. The app uses the `JSON` object to implement serialization and parsing.
 
 ### History
 The user can navigate back and forth in history. The app uses `HashRouter` from the React library to accomplish this.
 
 ### Media
-
+A bicycle horn sound is played (in [AddEditActivity](src/AddEditActivity.js)) whenever an activity is successfully created/edited. This functionality is implemented using `HTMLAudioElement`.
 
 ### Offline
 For caching the app, a service worker is registered. To inform the user that they are using an offline version of the app, a message is displayed in the top-left corner of the page.
 
 ### Using SVG in JavaScript
-
 

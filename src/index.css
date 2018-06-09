@@ -377,6 +377,12 @@ div.msg {
   width: 50%;
 }
 
+@media screen and (max-width: 700px) {
+  .main-area-wrapper {
+    width: 95%;
+  }
+}
+
 .main-area {
   font-size: 18px;
   flex: 1 0 0;
@@ -433,6 +439,7 @@ div.msg {
 .main-area-stats-content > li > ul {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   list-style-type: none;
   padding: 10px;
