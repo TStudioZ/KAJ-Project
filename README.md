@@ -1,6 +1,7 @@
-# KAJ-Project
+# KAJ Project
 This is the final project for the Client applications in JavaScript course.
 It only focuses on the front-end part of an app, even though there is a mocking API.
+The demo of the project is available [here](https://tstudioz.github.io/KAJ-Project/).
 
 ## Goal of the project
 The goal of this project is to create a sample sport activities tracking app.
@@ -30,6 +31,7 @@ The app uses advanced CSS selectors, see [index.css](src/index.css).
 CSS vendor prefixes are automatically handled by the React library.
 
 ### CSS transformations
+A CSS transformation is used to rotate the app's header logo. Transformations are also used in the animations described below (both 2D and 3D).
 
 ### CSS transitions/animations
 There are CSS animations used on the Home section of the app, see [index.css](src/index.css) and [MainContent](src/MainContent.js).

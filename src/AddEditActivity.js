@@ -162,7 +162,7 @@ class AddEditActivity extends ValidatingForm {
                         val={time}
                         onValueChange={this.handleTimeChange.bind(this)}
                         error={errors["time"]}
-                        label="Time:" />
+                        label="Time (s):" />
                     <LabeledField
                         name="distance"
                         type="number"

@@ -32,13 +32,17 @@ body {
   justify-content: center;
 }
 
-.page header .header-logo {
+.header-logo {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
   flex-grow: 1;
   padding-top: 20px;
+}
+
+.header-logo > h1 {
+  transform: rotate(5deg);
 }
 
 .page header nav {
@@ -55,7 +59,7 @@ body {
   justify-content: center;
 }
 
-.page section {
+.page > main {
   display: flex;
   flex-grow: 1;
   padding: 2em 1em 2em 1em;
@@ -65,7 +69,7 @@ body {
   box-sizing: border-box;
 }
 
-.page section main {
+.page > main > div.main {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -386,11 +390,9 @@ div.msg {
 @keyframes usernameSlideIn {
   from { 
     transform: translate(0, -100%);
-    visibility: 0%;
   }
   to { 
     transform: translate(0, 0);
-    visibility: 100%;
   }
 }
 
@@ -419,6 +421,7 @@ div.msg {
   list-style-type: none;
   padding: 0;
   margin-top: 2em;
+  perspective: 200px;
 }
 
 .main-area-stats-content > li {
@@ -435,12 +438,6 @@ div.msg {
   padding: 10px;
 }
 
-.main-area-stats-content > li > ul > li:first-child {
-}
-
-.main-area-stats-content > li > ul > li:last-child {
-}
-
 .stats-time {
   visibility: hidden;
   animation: statSlideIn 2s ease-in 2s 1 forwards; 
@@ -454,10 +451,10 @@ div.msg {
 @keyframes statSlideIn {
   from { 
     visibility: visible;
-    transform: translate(0, 100%);
+    transform: translate(0, 100%) rotateY(0deg);
   }
   to { 
     visibility: visible;
-    transform: translate(0, 0);
+    transform: translate(0, 0) rotateY(-5deg);
   }
 }

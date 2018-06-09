@@ -12,8 +12,8 @@ class Layout extends Component {
         return (
             <div className="page">
                 <Header />
-                <section>
-                    <main>
+                <main>
+                    <div className="main">
                         <Switch>
                             <Route exact path='/' component={MainContent} />
                             <Route exact path='/user' component={UserArea} />
@@ -22,8 +22,8 @@ class Layout extends Component {
                             <Route path='/activities/:id' component={AddEditActivity} />
                             <Route component={NoMatch} />
                         </Switch>
-                    </main>
-                </section>
+                    </div>
+                </main>
                 <Footer />
             </div>
         );
