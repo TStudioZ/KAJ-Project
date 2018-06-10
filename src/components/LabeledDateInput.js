@@ -1,6 +1,9 @@
 import React from 'react';
 import FormField from './FormField';
 
+/**
+ * Represents a date input with a label.
+ */
 class LabeledDateInput extends FormField {
 
     renderField(validationError, inputClassName) {

@@ -1,6 +1,9 @@
 import { Component } from 'react';
 
-// props: {name, type, val, onValueChange, error, label}
+/**
+ * Represents an input field with a validation error label.
+ * props: {name, type, val, onValueChange, error, label}
+ */
 class FormField extends Component {
     constructor(props) {
         super(props);

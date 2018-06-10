@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import MainMenu from './MainMenu';
 import AnimatedRunner from './AnimatedRunner';
 
+/**
+ * Represents the header of the application.
+ */
 class Header extends Component {
 
     constructor(props) {
@@ -14,19 +17,31 @@ class Header extends Component {
         this.state = { online: navigator.onLine };
     }
 
+    /**
+     * Called in a case the user gets to online state.
+     */
     onOnline() {
         this.setState({...this.state, online: true});
     }
 
+    /**
+     * Called in a case the user gets to offline state.
+     */
     onOffline() {
         this.setState({...this.state, online: false});
     }
 
+    /**
+     * Registers event listeners.
+     */
     componentDidMount() {
         window.addEventListener("online", this.onOnline);
         window.addEventListener("offline", this.onOffline);
     }
 
+    /**
+     * Unregisters event listeners.
+     */
     componentWillUnmount() {
         window.removeEventListener("online", this.onOnline);
         window.removeEventListener("offline", this.onOffline);

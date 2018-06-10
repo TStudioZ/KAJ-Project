@@ -3,17 +3,23 @@ import SportsTrackerAPI from './SportsTrackerAPI';
 import { MessageLoading } from './Messages';
 import Helper from './Helper';
 
+/**
+ * Represents the Home tab.
+ */
 class MainContent extends Component {
 
     constructor(props) {
         super(props);
 
+        // set state to loading
         this.state = {loading: true, user: null, totalDistance: 0, totalTime: 0};
+        // wait until all data is loaded
         Promise.all([
             SportsTrackerAPI.loadUser(),
             SportsTrackerAPI.getTotalDistance(),
             SportsTrackerAPI.getTotalTime()
         ]).then(([user, distance, time]) => {
+            // all data loaded, set loading to false and put the data to the state
             this.setState({loading: false, user: user, totalDistance: distance, totalTime: time});
         });
     }

@@ -1,7 +1,11 @@
 import React from 'react';
 import FormField from './FormField';
 
-// props: {onEdit}
+/**
+ * Represents a label with an edit button
+ * that dynamically changes to an input field.
+ * props: {onEdit}
+ */
 class EditableField extends FormField {
     constructor(props) {
         super(props);

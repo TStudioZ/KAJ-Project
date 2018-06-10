@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-// props: {name, val, dropdownItems, onValueChange, label}
+/**
+ * Represents a dropdown with a label.
+ * props: {name, val, dropdownItems, onValueChange, label}
+ */
 class LabeledDropdown extends Component {
     constructor(props) {
         super(props);

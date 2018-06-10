@@ -56,4 +56,4 @@ A bicycle horn sound is played (in [AddEditActivity](src/AddEditActivity.js)) wh
 For caching the app, a service worker is registered. To inform the user that they are using an offline version of the app, a message is displayed in the top-left corner of the page.
 
 ### Using SVG in JavaScript
-
+In the stats section of the app, the user can see a line chart of tracked distances for the past 7 days (currently using only demo data). The chart is drawn using the `<svg>` element with paths and text created in JavaScript. It is implemented in the [Stats](src/Stats.js) component.

@@ -6,7 +6,11 @@ import MainContent from './MainContent';
 import UserArea from './UserArea';
 import ActivitiesArea from './ActivitiesArea';
 import AddEditActivity from './AddEditActivity';
+import Stats from './Stats';
 
+/**
+ * Represents the layout of the application.
+ */
 class Layout extends Component {
     render() {
         return (
@@ -20,6 +24,7 @@ class Layout extends Component {
                             <Route exact path='/activities' component={ActivitiesArea} />
                             <Route exact path='/activities/add' component={AddEditActivity} />
                             <Route path='/activities/:id' component={AddEditActivity} />
+                            <Route exact path='/stats' component={Stats} />
                             <Route component={NoMatch} />
                         </Switch>
                     </div>

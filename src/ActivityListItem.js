@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter} from 'react-router-dom';
 
+/**
+ * Represents one row in the list of activities.
+ */
 class ActivityListItem extends Component {
 
     constructor(props) {
@@ -9,9 +12,11 @@ class ActivityListItem extends Component {
         this.handleEdit = this.handleEdit.bind(this);
     }
 
+    /**
+     * Navigates to an activity's detail. 
+     */
     handleEdit(event) {
         const a = this.props.activity;
-
         this.props.history.push(`/activities/${a.id}`);
     }
 

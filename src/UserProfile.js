@@ -4,6 +4,9 @@ import * as Message from './Messages';
 import EditableField from './components/EditableField';
 import ValidatingForm from './components/ValidatingForm';
 
+/**
+ * Manages the user's data.
+ */
 class UserProfile extends ValidatingForm {
 
     constructor(props) {
@@ -18,17 +21,25 @@ class UserProfile extends ValidatingForm {
         const user = { username: "", age: 0, weight: 0.0, height: 0 };
         const errors = { username: null, age: null, weight: null, height: null };
 
+        // set state to loading
         this.state = { loading: true, saving: false, editing: false, errors: errors, data: user };
         SportsTrackerAPI.loadUser().then(user => {
+            // after loading is finished, parse the data and save it to state
             const userParsed = { username: user.username, age: user.age, weight: user.weight, height: user.height };
             this.setState({...this.state, loading: false, data: userParsed});
         });
     }
 
+    /**
+     * Called when user wants to edit a field.
+     */
     handleEditField() {
         this.setState({...this.state, editing: true});
     }
 
+    /**
+     * Saves the changes using the API.
+     */
     handleSaveImpl(event) {
         event.preventDefault();
 
@@ -41,6 +52,7 @@ class UserProfile extends ValidatingForm {
     }
 
     handleSave(event) {
+        // save only if user wanted to edit at least one field
         if (!this.state.editing) {
             event.preventDefault();
             return;
@@ -139,6 +151,7 @@ class UserProfile extends ValidatingForm {
 
         const errors = this.state.errors;
 
+        // if editing of no field was requested, display the save button as disabled
         let saveBtnClassName = this.state.editing ? "btn" : "btn-disabled";
 
         return (
@@ -186,6 +199,8 @@ class UserProfile extends ValidatingForm {
 
     render() {
         const header = this.renderHeader();
+
+        // display a message based on state
         let contents;
         if (this.state.loading) {
             contents = Message.MessageLoading;

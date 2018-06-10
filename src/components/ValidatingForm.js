@@ -1,5 +1,8 @@
 import { Component } from 'react';
 
+/**
+ * Represents a form with validation functionality.
+ */
 class ValidatingForm extends Component {
 
     constructor(props) {
@@ -15,7 +18,9 @@ class ValidatingForm extends Component {
         this.state = { errors: errors, data: data };
     }
 
-    // update the validation error for the specified key
+    /**
+     * Updates the validation error for the specified key.
+     */
     setError(key, error) {
         let errors = this.state.errors;
         if (this.state.errors[key] !== error) {
@@ -25,8 +30,10 @@ class ValidatingForm extends Component {
         return errors;
     }
 
-    // update the value for the specified key, validate, set error if appropriate
-    // and convert it if validated successfully
+    /**
+     * Updates the value for the specified key, validates it, sets error if appropriate
+     * and converts it if validated successfully.
+     */
     updateField(key, value, validate, convert) {
         let errors = this.setError(key, validate != null ? validate(value) : null);
         let data = this.state.data;
@@ -38,16 +45,23 @@ class ValidatingForm extends Component {
         this.setState({...this.state, errors: errors, data: data});
     }
 
-    // saving implemented in child
+    /**
+     * Saving is implemented in child class.
+     */
     handleSaveImpl(event) {
         console.log("handleSaveImpl() method not implemented");
     }
 
-    // validating of all fields implemented in child
+    /**
+     * Validating of all fields is implemented in child class.
+     */
     validateFieldsImpl(event) {
         console.log("validateFieldsImpl() method not implemented");
     }
 
+    /**
+     * Validates all fields and return the result.
+     */
     validateFields(errors) {
         this.validateFieldsImpl(errors);
         for (let e of Object.entries(errors)) {
@@ -59,6 +73,11 @@ class ValidatingForm extends Component {
         return true;
     }
 
+    /**
+     * If there is a validation error for any field,
+     * save updates the Component's state with all errors.
+     * Otherwise uses the saving method implemented in subclass.
+     */
     handleSave(event) {
         event.preventDefault();
 

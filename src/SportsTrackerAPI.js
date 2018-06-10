@@ -1,25 +1,45 @@
 import Helper from './Helper';
 
+/**
+ * Represents a mock API for saving and retrieving data.
+ * Uses the Local Storage API for JSON-represented user data.
+ */
 class SportsTrackerAPI {
 
-    // insert mock data
+    /**
+     * Prepares support attributes and structures.
+     */
     static init() {
-        if (!localStorage.getItem("user")) {
-            // insert basic user data if no found in local storage
-            localStorage.setItem("user", JSON.stringify({username: "User", age: 18, weight: 50.0, height: 160}));
-        }
-
         SportsTrackerAPI.currentActivityId = 1; // generated id for activities
         SportsTrackerAPI.activities = new Map(); // {id, activity} pairs
         SportsTrackerAPI.sportTypes = ["Running", "Cycling", "Inline"];
     }
 
+    /**
+     * Inserts mock data.
+     */
     static insertMockData() {
+        if (!localStorage.getItem("user")) {
+            // insert basic user data if no found in local storage
+            localStorage.setItem("user", JSON.stringify({username: "User", age: 18, weight: 50.0, height: 160}));
+        }
+
         this.addActivity(new SportActivity(-1, "Running", new Date(2018, 3, 1), 727, 2.77));
         this.addActivity(new SportActivity(-1, "Running", new Date(2018, 3, 6), 1561, 5.75));
         this.addActivity(new SportActivity(-1, "Running", new Date(2018, 3, 7), 766, 2.78));
+
+        let today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const day = new Date();
+        day.setHours(0, 0, 0, 0);
+        day.setDate(today.getDate() - 1);
+        this.addActivity(new SportActivity(-1, "Cycling", day, 4321, 34.36));
     }
 
+    /**
+     * Creates a Promise resolved after a specified delay.
+     */
     static createPromise(data, timeout = 250) {
         return new Promise((resolve, reject) => {
             setTimeout(() => resolve(data), timeout);

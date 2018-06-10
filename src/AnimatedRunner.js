@@ -6,6 +6,10 @@ import imgRunner4 from './runnerImg/runner_4.png';
 import imgRunner5 from './runnerImg/runner_5.png';
 import imgRunner6 from './runnerImg/runner_6.png';
 
+/**
+ * Draws an animated image of a runner
+ * consisting of several frames.
+ */
 class AnimatedRunner extends Component {
 
     constructor(props) {
@@ -23,6 +27,9 @@ class AnimatedRunner extends Component {
         return new Image(61, 75);
     }
 
+    /**
+     * Loads all the frames.
+     */
     loadRunnerFrames() {
         const img1 = this.createImage();
         img1.src = imgRunner1;
@@ -41,6 +48,7 @@ class AnimatedRunner extends Component {
     }
 
     componentDidMount() {
+        // prepare the canvas
         const canvas = this.refs.canvas;
         this.resizeCanvas(canvas);
         requestAnimationFrame(this.drawFrame);
@@ -50,6 +58,9 @@ class AnimatedRunner extends Component {
         requestAnimationFrame(this.drawFrame);
     }
 
+    /**
+     * Draw a single frame.
+     */
     drawRunner(ctx, x, y, timeDelta, frameIndex) {
         ctx.drawImage(this.runnerFrames[frameIndex], x, y, 61, 75);
     }
@@ -59,6 +70,7 @@ class AnimatedRunner extends Component {
         const ctx = canvas.getContext("2d");
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        // compute time delta
         let prevTime = this.state.prevTime;
         if (!prevTime) prevTime = timestamp;
         let timeDelta = timestamp - prevTime;
@@ -67,6 +79,7 @@ class AnimatedRunner extends Component {
         const animationSpeed = 1000 / 6;
         const movingSpeed = 0.05;
 
+        // determine current frame based on animation speed and elapsed time
         let prevTimeFrame = this.state.prevTimeFrame;
         if (prevTimeFrame === null) 
             prevTimeFrame = 0;
@@ -74,17 +87,23 @@ class AnimatedRunner extends Component {
             prevTimeFrame += timeDelta;
         let frameIndex = parseInt((prevTimeFrame / animationSpeed) % 6, 10);
 
+        // move the runner
         let x = this.state.runnerX;
         x += timeDelta * movingSpeed;
         if (x > canvas.width) {
+            // if the runner gets off the screen, put her back on start
             x = -this.runnerWidth;
         }
         const y = canvas.height - this.runnerFrames[0].height;
         this.drawRunner(ctx, x, y, timeDelta, frameIndex);
 
+        // update the state
         this.setState({...this.state, runnerX: x, prevTime: prevTime, prevTimeFrame: prevTimeFrame});
     }
 
+    /**
+     * Sets the canvas' dimensions.
+     */
     resizeCanvas(canvas) {
         canvas.style.width = "100%";
         canvas.style.height = "200px";

@@ -4,6 +4,9 @@ import { MessageLoading } from './Messages';
 import ActivityListHeader from './ActivityListHeader';
 import ActivityListItem from './ActivityListItem';
 
+/**
+ * Displays a list with all activities.
+ */
 class ActivityList extends Component {
 
     constructor(props) {

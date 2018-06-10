@@ -1,6 +1,9 @@
 import React from 'react';
 import FormField from './FormField';
 
+/**
+ * Represents an input field with a label.
+ */
 class LabeledField extends FormField {
 
     renderField(validationError, inputClassName) {

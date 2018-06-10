@@ -1,5 +1,11 @@
+/**
+ * Contains helper methods for the app.
+ */
 class Helper {
 
+    /**
+     * Converts a date to user-friendly string.
+     */
     static getStringDate(date) {
         let dd = date.getDate();
         let mm = date.getMonth() + 1;
@@ -14,6 +20,9 @@ class Helper {
         return dateString;
     }
 
+    /**
+     * Converts a time in seconds to a user-friendly string.
+     */
     static toTimeString(time) {
         const hours = parseInt(time / 3600, 10);
         const hoursString = hours > 0 ? hours + ":" : "";

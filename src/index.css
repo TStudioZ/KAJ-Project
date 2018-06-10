@@ -472,3 +472,33 @@ div.msg {
   left: 0;
   padding: 5px;
 }
+
+.stats-header {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+@media screen and (max-width: 700px) {
+  .stats-wrapper {
+    width: 100%;
+  }
+}
+
+.stats-seven-day-distance {
+  margin-top: 2em;
+}
+
+.stats-seven-day-distance-header {
+  font-weight: bold;
+}
+
+.stats-seven-day-distance-chart {
+  margin-top: 1em;
+}

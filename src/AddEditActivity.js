@@ -9,6 +9,9 @@ import Helper from './Helper';
 import ValidatingForm from './components/ValidatingForm';
 import successSound from './sounds/bicycle-horn-1.wav';
 
+/**
+ * Handles creation and editing of activities.
+ */
 class AddEditActivity extends ValidatingForm {
 
     constructor(props) {
@@ -27,17 +30,21 @@ class AddEditActivity extends ValidatingForm {
         this.state = { saving: false, errors: errors, dropdownSportTypes: dropdownSportTypes, data: data };
            
         if (id > 0) {
+            // if there is an existing activity to be edited, load it
             this.state = { ...this.state, loading: true, id: id };
             SportsTrackerAPI.getActivity(id).then(a => {
                 this.setState({...this.state, loading: false, data: a});
             });
         } else {
+            // otherwise start with a new default activity
             this.state = { ...this.state, loading: false, id: -1 };
         }
     }
 
     createDefaultActivity(id) {
-        return new SportActivity(id, "Running", new Date(), 0, 0);
+        const d = new Date();
+        d.setHours(0, 0, 0, 0);
+        return new SportActivity(id, "Running", d, 0, 0);
     }
 
     handleSportTypeChange(sportType) {
@@ -48,7 +55,9 @@ class AddEditActivity extends ValidatingForm {
         if (!date) {
             this.updateField("date", new Date(), this.validateDate, (d) => d);
         } else {
-            this.updateField("date", new Date(date), this.validateDate, (d) => d);
+            const d = new Date(date);
+            d.setHours(0, 0, 0, 0);
+            this.updateField("date", d, this.validateDate, (d) => d);
         }
     }
 
@@ -79,13 +88,16 @@ class AddEditActivity extends ValidatingForm {
     }
 
     handleSaveImpl(errors) {
+        // update the state
         this.setState({...this.state, errors: errors, saving: true});
         if (this.state.id > 0) {
+            // id exists, just update
             SportsTrackerAPI.updateActivity(this.state.data).then(res => {
                 this.playSuccessSound();
                 this.props.history.push(`/activities`);
             });
         } else {
+            // id does not exist, create a new activity
             SportsTrackerAPI.addActivity(this.state.data).then(res => {
                 this.playSuccessSound();
                 this.props.history.push(`/activities`);
@@ -142,7 +154,9 @@ class AddEditActivity extends ValidatingForm {
         const time = this.state.data.time;
         const distance = this.state.data.distance;
 
-        const todayString = Helper.getStringDate(new Date());
+        const d = new Date();
+        d.setHours(0, 0, 0, 0);
+        const todayString = Helper.getStringDate(d);
         const dateString = Helper.getStringDate(date);
 
         const errors = this.state.errors;
