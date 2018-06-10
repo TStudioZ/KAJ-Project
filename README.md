@@ -9,7 +9,7 @@ There is a user profile with some basic biological data.
 The user has the ability to add/edit activities and display them in a list. Some basic stats are available as well.
 
 ## Technologies
-The is implemented using the React JavaScript library.
+The app is implemented using the React JavaScript library.
 The mocking API in [SportsTrackerAPI](src/SportsTrackerAPI.js) simulates a delay by returning Promises after some timeout.
 These Promises are then used in the React Components for retrieving the mock data. When the data is being loaded/saved, an appropriate message is displayed to the user.
 
@@ -53,7 +53,7 @@ The user can navigate back and forth in history. The app uses `HashRouter` from 
 A bicycle horn sound is played (in [AddEditActivity](src/AddEditActivity.js)) whenever an activity is successfully created/edited. This functionality is implemented using `HTMLAudioElement`.
 
 ### Offline
-For caching the app, a service worker is registered. To inform the user that they are using an offline version of the app, a message is displayed in the top-left corner of the page.
+For caching the app, a service worker is registered. To inform the user that they are using an offline version of the app, a message is displayed in the top-left corner of the page. See [Header](src/Header.js).
 
 ### Using SVG in JavaScript
 In the stats section of the app, the user can see a line chart of tracked distances for the past 7 days (currently using only demo data). The chart is drawn using the `<svg>` element with paths and text created in JavaScript. It is implemented in the [Stats](src/Stats.js) component.
